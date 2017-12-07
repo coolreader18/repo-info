@@ -8,7 +8,7 @@ if (hash) {
 }
 
 function dispInfo(repo) {
-  gh.getRepo.apply(this,repo.split("/")).getDetails(function(error,details){
+  gh.getRepo.apply(gh,repo.split("/")).getDetails(function(error,details){
     console.log(error, details);
   });
 }
