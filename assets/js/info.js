@@ -1,4 +1,3 @@
-import GitHub from 'github-api';
 const gh = new GitHub();
 const inpdiv = document.getElementById("inputdiv");
 const input = document.getElementById("input");
