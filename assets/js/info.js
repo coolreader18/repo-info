@@ -1,7 +1,8 @@
 import GitHub from 'github-api';
 const gh = new GitHub();
 const inpdiv = document.getElementById("inputdiv");
-var hash = window.location.hash;
+const input = document.getElementById("input");
+var hash = window.location.hash.split("#")[0];
 dispInfo();
 if (hash) {
   dispInfo(hash);
