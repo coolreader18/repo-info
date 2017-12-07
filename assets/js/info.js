@@ -1,4 +1,4 @@
-const gh = new GitHub("5e5bdf52625a7309058e7bdda4ad3fcde6a680a0");
+const gh = new GitHub();
 const inpdiv = document.getElementById("inputdiv");
 const input = document.getElementById("input");
 var hash = window.location.hash.split("#")[0];
