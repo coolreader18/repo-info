@@ -1,14 +1,22 @@
-const gh = new GitHub();
 const inpdiv = document.getElementById("inputdiv");
 const input = document.getElementById("input");
 var hash = window.location.hash.split("#")[0];
-dispInfo();
+var info = {};
 if (hash) {
   dispInfo(hash);
 }
 
+function getInfo(repo,subdir) {
+  return $.getJSON("https://api.github.com/repos/"+repo+(subdir?"/"+subdir:""));
+}
+
 function dispInfo(repo) {
-  gh.getRepo.apply(gh,repo.split("/")).getDetails(function(error,details){
-    console.log(error, details);
+  var subdirs = ["commits","languages"];
+
+  subdirs.forEach(function(subdir){
+    $.getJSON("https://api.github.com/repos/"+repo+"/"+subdir).done(function(data){
+      info[subdir] = data;
+    });
   });
+
 }

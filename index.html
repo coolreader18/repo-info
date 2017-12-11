@@ -1,14 +1,22 @@
----
-layout: default
----
-<div id="main">
-  <div id="inputdiv">
-    <input id="input" type="text" placeholder="username/repo" />
-    <button onclick="dispInfo(input.value);">Get info</button>
-  <div>
-  <div id="infodiv">
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="assets/css/materialize.css"  media="screen,projection"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+  <div id="main">
+    <div id="inputdiv">
+      <label for="input">Repository:</label>
+      <input id="input" type="text" placeholder="username/repo" />
+      <button class="btn"onclick="dispInfo(input.value);">Get Info</button>
+    </div>
+    <div id="infodiv">
+    </div>
   </div>
-</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="assets/js/info.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="assets/js/materialize.min.js"></script>
+  <script src="assets/js/info.js"></script>
+</body>
+</html>
