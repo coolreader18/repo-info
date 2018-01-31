@@ -1,5 +1,5 @@
-const inpdiv = document.getElementById("inputdiv");
-const input = document.getElementById("input");
+var inpdiv = $("#inputdiv");
+var input = $("#input");
 var hash = window.location.hash.split("#")[0];
 var info = {};
 if (hash) {
@@ -7,16 +7,26 @@ if (hash) {
 }
 
 function getInfo(repo,subdir) {
-  return $.getJSON("https://api.github.com/repos/"+repo+(subdir?"/"+subdir:""));
+  return $.getJSON("https://api.github.com/repos/" + repo + (subdir ? "/" + subdir : ""));
 }
 
 function dispInfo(repo) {
-  var subdirs = ["commits","languages"];
-
-  subdirs.forEach(function(subdir){
-    $.getJSON("https://api.github.com/repos/"+repo+"/"+subdir).done(function(data){
+  var subdirs = ["commits", "languages", ];
+  
+  $.when(subdirs.reduce(function(arr, subdir) {
+    return arr.concat([getInfo(repo, subdir).done(function(data) {
       info[subdir] = data;
-    });
-  });
-
+    }]));
+  },[]).concat([
+    getInfo(repo).done(function(data) {
+      Object.keys(data).forEach(function(key) {
+        if (key.indexOf("api.github.com") != -1) {
+          delete data[key];
+        }
+      });
+      $.extend(info, data);
+    })
+  ])).done(function() {
+      
+  })
 }
